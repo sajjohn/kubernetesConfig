@@ -1,0 +1,25 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+    name: payee-service-pod
+    labels:
+        name: payee-service-pod
+        app: demo-jhipster
+        
+spec:
+    containers:
+        - name: payee-service
+          image: sajjohn/jhipsterdemo:payeeservice
+          env:
+           - name: _JAVA_OPTIONS
+             value: "-Xmx512m -Xms256m"
+           - name: SPRING_PROFILES_ACTIVE
+             value: "prod,swagger"
+           - name: SPRING_DATASOURCE_URL
+             value: "jdbc:mysql://10.48.4.93:3306/payeeservice?useUnicode=true&characterEncoding=utf8&useSSL=false"
+           - name: JHIPSTER_SLEEP
+             value: "30"
+          ports:
+            - containerPort: 8081          
